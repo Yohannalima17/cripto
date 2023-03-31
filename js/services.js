@@ -48,8 +48,8 @@ function formatCripto(cripto){
     const formattedCripto = getCripto(cripto.data)
 
     const title = `<h5 class="card-title"> ${formattedCripto.symbol} - ${formattedCripto.name}<h5>`
-    const price = `<h5 class="card-title">Preço: $${formattedCripto.price}</h5>`
-    const percent = `<h5 class="card-title">Variação de 24H: ${formattedCripto.changePercent24Hr}%</h5>`
+    const price = `<h5 class="card-title">Preço: $${parseFloat(formattedCripto.price).toFixed(2)}</h5>`
+    const percent = `<h5 class="card-title">Variação de 24H: ${parseFloat(formattedCripto.changePercent24Hr).toFixed(2)}%</h5>`
     const btn = `<a class='btn btn-primary' target='_blank' href=${ formattedCripto.explorer }>Mais informações</a>`
 
     clearCard()
@@ -88,13 +88,14 @@ function showCripto(criptos){
     for(let i=0; i< criptos.length; i++){
         
         const btn = `<a class='btn btn-primary' target='_blank' href=${ criptos[i].explorer }>Acessar</a>`
-        const price = `$${criptos[i].price}`
+        const price = `${parseFloat(criptos[i].price).toFixed(2)}`
+        const change = `${parseFloat(criptos[i].changePercent24Hr).toFixed(2)}`
 
         $("#user-data").append(`<tr>` +
                                     `<td>` + criptos[i].name + `</td>` +
                                     `<td>` + criptos[i].symbol + `</td>` +
                                     `<td>` + price + `</td>` +
-                                    `<td>` + criptos[i].changePercent24Hr + `% </td>` + 
+                                    `<td>` + change + `% </td>` + 
                                     `<td>` + btn + `</td>` + 
                             + `</tr>`)
     }
